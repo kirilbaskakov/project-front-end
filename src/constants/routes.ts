@@ -1,14 +1,42 @@
 import { lazy } from "react";
+import Layout from "../components/Layout";
 
-const routes = [
-  {
-    path: "/register",
-    element: lazy(() => import("@/pages/RegisterPage")),
-  },
-  {
-    path: "/login",
-    element: lazy(() => import("@/pages/LoginPage")),
-  },
-];
+export const authRoutes = {
+  layout: Layout,
+  routes: [
+    {
+      path: "/profile",
+      element: lazy(() => import("@/pages/ProfilePage")),
+    },
+    {
+      path: "/messages",
+      element: lazy(() => import("@/pages/MessagesPage")),
+    },
+    {
+      path: "/followers",
+      element: lazy(() => import("@/pages/FollowersPage")),
+    },
+    {
+      path: "/search",
+      element: lazy(() => import("@/pages/SearchPage")),
+    },
+    {
+      path: "/notifications",
+      element: lazy(() => import("@/pages/NotificationsPage")),
+    },
+  ],
+};
 
-export default routes;
+export const nonAuthRoutes = {
+  layout: null,
+  routes: [
+    {
+      path: "/register",
+      element: lazy(() => import("@/pages/RegisterPage")),
+    },
+    {
+      path: "/login",
+      element: lazy(() => import("@/pages/LoginPage")),
+    },
+  ],
+};
