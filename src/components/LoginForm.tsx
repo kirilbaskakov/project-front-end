@@ -18,7 +18,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = () => {
-    navigate("/");
+    navigate("/profile");
   };
 
   return (

@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import React, { lazy } from "react";
 import Layout from "../components/Layout";
 
 export const authRoutes = {
@@ -28,7 +28,7 @@ export const authRoutes = {
 };
 
 export const nonAuthRoutes = {
-  layout: null,
+  layout: React.Fragment,
   routes: [
     {
       path: "/register",

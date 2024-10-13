@@ -1,7 +1,7 @@
-import React from "react";
+import Follows from "@/components/Follows";
 
 const SearchPage = () => {
-  return <div></div>;
+  return <Follows />;
 };
 
 export default SearchPage;
