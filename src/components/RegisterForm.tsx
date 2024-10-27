@@ -1,3 +1,4 @@
+import registerUser from "@/api/registerUser";
 import Logo from "@/assets/logo.png";
 import {
   validateEmail,
@@ -5,7 +6,7 @@ import {
   validatePassword,
   validateSurname,
 } from "@/constants/validation";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 type Inputs = {
@@ -23,8 +24,9 @@ const RegisterForm = () => {
   } = useForm<Inputs>();
   const navigate = useNavigate();
 
-  const onSubmit = () => {
-    navigate("/profile");
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await registerUser(data);
+    navigate("/");
   };
 
   return (
