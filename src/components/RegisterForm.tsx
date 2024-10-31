@@ -1,4 +1,3 @@
-import registerUser from "@/api/registerUser";
 import Logo from "@/assets/logo.png";
 import {
   validateEmail,
@@ -8,6 +7,8 @@ import {
 } from "@/constants/validation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
+import { useState } from "react";
 
 type Inputs = {
   name: string;
@@ -22,11 +23,22 @@ const RegisterForm = () => {
     formState: { errors },
     register,
   } = useForm<Inputs>();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { register: registerUser } = useUser();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await registerUser(data);
-    navigate("/");
+    try {
+      setError(null);
+      setLoading(true);
+      await registerUser(data);
+      navigate("/profile");
+    } catch {
+      setError("Ошибка регистрации");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -72,7 +84,10 @@ const RegisterForm = () => {
         <p className="text-center mt-2">
           Already registered? <Link to="/login">Log in</Link>
         </p>
-        <button className="mt-4">Register</button>
+        <p className="text-red-500 text-sm font-normal h-4 mt-3">{error}</p>
+        <button className="mt-1" disabled={loading}>
+          Register
+        </button>
       </form>
     </div>
   );
