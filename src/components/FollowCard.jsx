@@ -1,9 +1,8 @@
-import React from 'react';
-import Sussy from "@/assets/sussy.jpg";
+import React from "react";
 import Woman from "@/assets/woman.jpg";
 
 const FollowCard = () => {
-    return (
+  return (
     <div className="flex gap-8 w-full items-center">
       <img src={Woman} className="w-16 h-16 rounded-full" />
       <div className="flex flex-col justify-center">
@@ -12,9 +11,9 @@ const FollowCard = () => {
           Started following you
         </div>
       </div>
-      <button className='px-6 py-1 ml-auto'>Follow</button>
+      <button className="px-6 py-1 ml-auto">Follow</button>
     </div>
-    );
+  );
 };
 
 export default FollowCard;

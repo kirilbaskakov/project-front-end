@@ -37,10 +37,10 @@ const nonAuthRouter = createRouter(
 );
 
 const Router = () => {
-  const { user } = useUser();
+  const { token } = useUser();
   return (
     <Suspense fallback={<Loader />}>
-      <RouterProvider router={user ? authRouter : nonAuthRouter} />
+      <RouterProvider router={token ? authRouter : nonAuthRouter} />
     </Suspense>
   );
 };

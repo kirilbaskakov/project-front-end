@@ -24,6 +24,10 @@ export const authRoutes = {
       path: "/notifications",
       element: lazy(() => import("@/pages/NotificationsPage")),
     },
+    {
+      path: "/chat",
+      element: lazy(() => import("@/pages/ChatPage")),
+    },
   ],
 };
 

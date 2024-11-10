@@ -1,6 +1,6 @@
 import Profile from "@/assets/profile.svg";
 import Messages from "@/assets/messages.svg";
-import Search from "@/assets/search.svg";
+import Search from "@/assets/search.png";
 import Notifications from "@/assets/notification.svg";
 
 const navLinks = [

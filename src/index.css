@@ -16,8 +16,18 @@ body {
 a {
   color: #7303fc;
 }
-input[type=text], input[type=password], select {
-    @apply rounded-md py-1 px-1 border-2 border-gray-300 bg-transparent bg-white
+
+input[type=text], input[type=password], select, textarea, .label {
+    @apply rounded-lg p-1 border-2 border-gray-100 bg-transparent bg-white focus:outline-none resize-none;
+    box-shadow: 0px 4px 4px 0px #330FFF40;
+}
+
+.p-lg {
+  @apply p-2
+}
+
+.p-r {
+  @apply pr-12
 }
 
 button {

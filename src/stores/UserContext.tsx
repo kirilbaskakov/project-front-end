@@ -46,6 +46,7 @@ export const UserProvider = ({
     setToken(data.token);
     setUser(data.user);
     localStorage.setItem("token", data.token);
+    console.log(data.token);
   };
 
   const logout = () => {
