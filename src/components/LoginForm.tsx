@@ -1,8 +1,9 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { validateEmail, validatePassword } from "@/constants/validation";
+import useUser from "@/hooks/useUser";
+import { useState } from "react";
 
 type Inputs = {
   email: string;
@@ -15,10 +16,22 @@ const LoginForm = () => {
     formState: { errors },
     register,
   } = useForm<Inputs>();
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useUser();
 
-  const onSubmit = () => {
-    navigate("/profile");
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      setError(null);
+      setLoading(true);
+      await login(data.email, data.password);
+      navigate("/profile");
+    } catch {
+      setError("Ошибка авторизации");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,7 +59,10 @@ const LoginForm = () => {
         <p className="text-center mt-2">
           Not registered yet? <Link to="/register">Register</Link>
         </p>
-        <button className="mt-4">Log in</button>
+        <p className="text-red-500 font-normal h-5 mt-1 text-center">{error}</p>
+        <button className="mt-2" disabled={loading}>
+          Log in
+        </button>
       </form>
     </div>
   );

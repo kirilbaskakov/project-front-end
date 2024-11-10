@@ -1,9 +1,13 @@
-import ChatCard from "@/components/ChatCard";
 import Messages from "@/components/Messages";
-import React from "react";
+import MyProfile from "@/components/MyProfile";
 
 const MessagesPage = () => {
-  return <Messages />;
+  return (
+    <>
+      <MyProfile />
+      <Messages />
+    </>
+  );
 };
 
 export default MessagesPage;
