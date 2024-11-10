@@ -28,7 +28,7 @@ const LoginForm = () => {
       await login(data.email, data.password);
       navigate("/profile");
     } catch {
-      setError("Неверный логин или пароль");
+      setError("Ошибка авторизации");
     } finally {
       setLoading(false);
     }
@@ -59,8 +59,8 @@ const LoginForm = () => {
         <p className="text-center mt-2">
           Not registered yet? <Link to="/register">Register</Link>
         </p>
-        <p className="text-red-500 text-sm font-normal h-4 mt-3">{error}</p>
-        <button className="mt-1" disabled={loading}>
+        <p className="text-red-500 font-normal h-5 mt-1 text-center">{error}</p>
+        <button className="mt-2" disabled={loading}>
           Log in
         </button>
       </form>
