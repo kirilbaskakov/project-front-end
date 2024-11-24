@@ -1,11 +1,14 @@
+import ErrorBoundary from "./components/ErrorBoundary";
 import Router from "./components/Router";
 import { UserProvider } from "./stores/UserContext";
 
 function App() {
   return (
-    <UserProvider>
-      <Router />
-    </UserProvider>
+    <ErrorBoundary>
+      <UserProvider>
+        <Router />
+      </UserProvider>
+    </ErrorBoundary>
   );
 }
 

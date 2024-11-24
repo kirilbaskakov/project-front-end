@@ -1,8 +1,11 @@
-import RegisterForm from "@/components/RegisterForm";
-import React from "react";
+import MyProfile from "@/components/MyProfile";
+import Follows from "@/components/Follows";
 
 const ProfilePage = () => {
-  return <div>{/* <RegisterForm /> */}</div>;
+  return <>
+    <MyProfile/>
+    <Follows/>
+  </>;
 };
 
 export default ProfilePage;
