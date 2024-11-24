@@ -1,15 +1,42 @@
+import { useState } from "react";
 import NewFollowers from "./NewFollowers";
 import NewMessages from "./NewMessages";
+import classNames from "classnames";
+import Follows from "./Follows";
 
 const Messages = () => {
+  const [tab, setTab] = useState<"messages" | "followers">("messages");
+
   return (
     <div className="flex-1">
-      <div className="flex px-12 py-2 justify-between text-blue-600 text-3xl">
-        <h2>Messages</h2>
-        <h2 className="opacity-50">Followers</h2>
+      <div className="flex px-12 py-2 justify-between">
+        <button
+          className={
+            "text-blue-600 text-3xl bg-transparent " +
+            classNames({ "opacity-50": tab !== "messages" })
+          }
+          onClick={() => setTab("messages")}
+        >
+          Messages
+        </button>
+        <button
+          className={
+            "text-blue-600 text-3xl bg-transparent " +
+            classNames({ "opacity-50": tab !== "followers" })
+          }
+          onClick={() => setTab("followers")}
+        >
+          Followers
+        </button>
       </div>
-      <NewFollowers />
-      <NewMessages />
+      {tab == "messages" ? (
+        <>
+          <NewFollowers />
+          <NewMessages />
+        </>
+      ) : (
+        <Follows />
+      )}
     </div>
   );
 };

@@ -1,7 +1,11 @@
 import Follows from "@/components/Follows";
+import SearchProfile from "@/components/SearchProfile";
 
 const SearchPage = () => {
-  return <Follows />;
+  return <>
+    <SearchProfile/>
+    <Follows />
+  </>;
 };
 
 export default SearchPage;
