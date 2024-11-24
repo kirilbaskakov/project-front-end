@@ -1,7 +1,7 @@
-import Profile from "@/assets/profile.svg";
-import Messages from "@/assets/messages.svg";
-import Search from "@/assets/search.png";
-import Notifications from "@/assets/notification.svg";
+import Profile from "../assets/profile.svg";
+import Messages from "../assets/messages.svg";
+import Search from "../assets/search_bold.svg";
+import Notifications from "../assets/notification.svg";
 
 const navLinks = [
   {
