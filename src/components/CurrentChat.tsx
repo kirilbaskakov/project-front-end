@@ -1,51 +1,27 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
 import PersonCard from "./PersonCard";
-import MessageType from "@/types/Message";
+import { useChat } from "@/stores/ChatContext";
+import { useSearchParams } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 const CurrentChat = () => {
-  const [messages, setMessages] = useState<MessageType[]>([
-    {
-      id: 1,
-      text: "Lorem ipsum dolor sit amet, consectetur",
-      date: "10:05",
-      type: "sent",
-    },
-    {
-      id: 2,
-      text: "Lorem ipsum dolor sit amet, consectetur",
-      date: "10:05",
-      type: "sent",
-    },
-    {
-      id: 3,
-      text: "Lorem ipsum dolor sit amet, consectetur",
-      date: "10:05",
-      type: "received",
-    },
-    {
-      id: 4,
-      text: "Lorem ipsum dolor sit amet, consectetur",
-      date: "10:05",
-      type: "sent",
-    },
-  ]);
+  const { messages, fetchMessages, sendMessage } = useChat();
+  const { user } = useUser();
+  const chatId = Number(useSearchParams("chat_id")[0].get("chat_id"));
+
+  useEffect(() => {
+    fetchMessages(chatId);
+  }, [chatId, fetchMessages]);
 
   const onSent = (text: string) => {
-    setMessages([
-      ...messages,
-      {
-        id: +new Date(),
-        text,
-        date: new Date().toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-        type: "sent",
-      },
-    ]);
+    if (user) sendMessage(chatId, user.id, chatId, text);
   };
+
+  if (Number.isNaN(chatId)) {
+    return null;
+  }
 
   return (
     <div className="flex-1 grid grid-rows-[auto_1fr_auto] h-[90vh]">
@@ -53,8 +29,8 @@ const CurrentChat = () => {
         <PersonCard />
       </div>
       <div className="mt-2 flex flex-col items-start gap-2 overflow-y-auto px-2">
-        {messages.map(({ id, text, date, type }) => (
-          <Message key={id} text={text} date={date} type={type} />
+        {messages.map((message) => (
+          <Message key={message.id} message={message} />
         ))}
       </div>
       <MessageInput onSent={onSent} />

@@ -1,14 +1,12 @@
+import useUser from "@/hooks/useUser";
+import MessageType from "@/types/MessageType";
 import classNames from "classnames";
 
-const Message = ({
-  type,
-  text,
-  date,
-}: {
-  type: "sent" | "received";
-  text: string;
-  date: string;
-}) => {
+const Message = ({ message }: { message: MessageType }) => {
+  const { user } = useUser();
+
+  const type = message.sender_id == user?.id ? "sent" : "received";
+
   return (
     <div
       className={
@@ -24,7 +22,7 @@ const Message = ({
           })
         }
       >
-        {text}
+        {message.text}
       </p>
       <p
         className={
@@ -32,7 +30,7 @@ const Message = ({
           classNames({ "ml-auto": type === "sent" })
         }
       >
-        {date}
+        {message.date}
       </p>
     </div>
   );
