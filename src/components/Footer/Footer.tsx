@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="left-0 w-full py-3 bg-white sticky bottom-0">
+    <footer className="left-0 w-full py-3 bg-white fixed bottom-0">
       <nav className="flex gap-10 justify-center items-center">
         {navLinks.map(({ path, icon }) => (
           <Link to={path}>

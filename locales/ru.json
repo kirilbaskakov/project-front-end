@@ -1,0 +1,20 @@
+{
+  "name": "Имя",
+  "age": "Возраст",
+  "place": "Место жительства",
+  "principles": "Основные принципы",
+  "tellAbout": "Расскажите о себе",
+  "follow": "Подписаться",
+  "startedFollow": "Начал(а) следить за вами",
+  "messages": "Сообщения",
+  "followers": "Подписчики",
+  "newFollowers": "Новые подписчики",
+  "newMessages": "Новые сообщения",
+  "registerError": "Ошибка регистрации",
+  "yourName": "Ваше имя",
+  "surname": "Фамилия",
+  "password": "Пароль",
+  "alreadyRegistered": "Уже зарегистрированы?",
+  "logIn": "Войти",
+  "register": "Регистрация"
+}
