@@ -6,7 +6,7 @@ import es from "../locales/es.json";
 import de from "../locales/de.json";
 import getCookie from "@/utils/getCookie";
 
-const language = getCookie("i18next") || "ru";
+const language = getCookie("lang") || "ru";
 
 i18n.use(initReactI18next).init({
   resources: {

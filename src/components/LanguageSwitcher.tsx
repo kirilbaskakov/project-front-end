@@ -23,7 +23,7 @@ const LanguageSwitcher = () => {
   const switchLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     setDropdownVisible(false);
-    setCookie("i18next", lang, 30);
+    setCookie("lang", lang, 30);
   };
 
   useEffect(() => {
