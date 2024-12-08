@@ -1,25 +1,41 @@
-import LikeIcon from "@/assets/like-icon.png";
-import ChatIcon from "@/assets/chat-icon.png";
-import StarIcon from "@/assets/star-icon.png";
-import CancelIcon from "@/assets/cancel-icon.png";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { BiMessageRoundedDots } from "react-icons/bi";
+import { FaRegStar } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
-const Buttons = () => {
-    return (
-        <div className='flex justify-center gap-4 mt-4'>
-            <button className="w-12 h-12 bg-black rounded-full p-1">
-                <img src={LikeIcon} className="w-12 h-12 object-center"/>
-            </button>
-            <button className="w-12 h-12 bg-black rounded-full overflow-hidden p-1">
-                <img src={ChatIcon} className="w-12 h-12 object-contain"/>
-            </button>
-            <button className="w-12 h-12 bg-black rounded-full overflow-hidden p-1">
-                <img src={StarIcon} className="w-12 h-12 object-contain"/>
-            </button>
-            <button className="w-12 h-12 bg-black rounded-full overflow-hidden p-1">
-                <img src={CancelIcon} className="w-12 h-12 object-contain"/>
-            </button>
-        </div>
-    );
+const Buttons = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <div className="w-60  mx-auto mt-4">
+      <div className="flex justify-between">
+        <button
+          className="w-14 h-14 bg-black rounded-full flex justify-center items-center"
+          onClick={onClick}
+        >
+          <IoIosHeartEmpty className="w-12 h-12" />
+        </button>
+        <button
+          className="w-14 h-14 bg-black rounded-full flex justify-center items-center"
+          onClick={onClick}
+        >
+          <RxCross2 className="w-12 h-12" />
+        </button>
+      </div>
+      <div className="flex justify-center gap-4">
+        <button
+          className="w-14 h-14 bg-black rounded-full flex justify-center items-center"
+          onClick={onClick}
+        >
+          <BiMessageRoundedDots className="w-12 h-12" />
+        </button>
+        <button
+          className="w-14 h-14 bg-black rounded-full flex justify-center items-center"
+          onClick={onClick}
+        >
+          <FaRegStar className="w-12 h-12" />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Buttons;
