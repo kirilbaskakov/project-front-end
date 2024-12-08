@@ -1,0 +1,20 @@
+{
+  "name": "Nombre",
+  "age": "Edad",
+  "place": "Lugar de residencia",
+  "principles": "Principios básicos",
+  "tellAbout": "Cuéntame sobre ti",
+  "follow": "Seguir",
+  "startedFollow": "Comenzó a seguirte",
+  "messages": "Mensajes",
+  "followers": "Seguidores",
+  "newFollowers": "Nuevos seguidores",
+  "newMessages": "Nuevos mensajes",
+  "registerError": "Error de registro",
+  "yourName": "Tu nombre",
+  "surname": "Apellido",
+  "password": "Contraseña",
+  "alreadyRegistered": "¿Ya estás registrado?",
+  "logIn": "Iniciar sesión",
+  "register": "Registrar"
+}

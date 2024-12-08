@@ -3,8 +3,10 @@ import NewFollowers from "./NewFollowers";
 import NewMessages from "./NewMessages";
 import classNames from "classnames";
 import Follows from "./Follows";
+import { useTranslation } from "react-i18next";
 
 const Messages = () => {
+  const { t } = useTranslation();
   const [tab, setTab] = useState<"messages" | "followers">("messages");
 
   return (
@@ -17,7 +19,7 @@ const Messages = () => {
           }
           onClick={() => setTab("messages")}
         >
-          Messages
+          {t("messages")}
         </button>
         <button
           className={
@@ -26,7 +28,7 @@ const Messages = () => {
           }
           onClick={() => setTab("followers")}
         >
-          Followers
+          {t("followers")}
         </button>
       </div>
       {tab == "messages" ? (
