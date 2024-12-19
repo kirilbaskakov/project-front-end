@@ -1,6 +1,6 @@
 import ChatType from "@/types/ChatType";
 
-const getChats = (userId: number): ChatType[] => {
+const getChats = async (userId: number): Promise<ChatType[]> => {
   return [
     {
       id: 1,

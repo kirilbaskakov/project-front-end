@@ -1,3 +1,4 @@
+import getChatMessages from "@/api/getChatMessages";
 import MessageType from "@/types/MessageType";
 import React, {
   createContext,
@@ -10,7 +11,7 @@ import React, {
 } from "react";
 
 const ChatContext = createContext<{
-  messages: MessageType[];
+  messages: Record<number, MessageType[]>;
   sendMessage: (
     chatId: number,
     senderId: number,
@@ -19,7 +20,7 @@ const ChatContext = createContext<{
   ) => void;
   fetchMessages: (chatId: number) => Promise<void>;
 }>({
-  messages: [],
+  messages: {},
   sendMessage: () => {},
   fetchMessages: async () => {},
 });
@@ -27,7 +28,7 @@ const ChatContext = createContext<{
 export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [messages, setMessages] = useState<Record<number, MessageType[]>>([]);
   const socket = useMemo(
     () => new WebSocket(import.meta.env.VITE_SOCKET_URL),
     [],
@@ -37,7 +38,10 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     socket.onmessage = (event) => {
       const message: MessageType = JSON.parse(event.data);
-      setMessages((messages) => [...messages, message]);
+      setMessages((messages) => ({
+        ...messages,
+        [message.chat_id]: [...(messages[message.chat_id] ?? []), message],
+      }));
     };
 
     return () => {
@@ -55,7 +59,10 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
         date: new Date().toLocaleDateString(),
       };
       socket.send(JSON.stringify(body));
-      setMessages((messages) => [...messages, { id: +new Date(), ...body }]);
+      setMessages((messages) => ({
+        ...messages,
+        [chatId]: [...(messages[chatId] ?? []), { id: +new Date(), ...body }],
+      }));
     },
     [socket],
   );
@@ -65,9 +72,11 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
       if (isChatFetched.current[chatId]) {
         return;
       }
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/${chatId}`);
-      const newMessages = await response.json();
-      setMessages((messages) => [...newMessages, ...messages]);
+      const newMessages = await getChatMessages(chatId);
+      setMessages((messages) => ({
+        ...messages,
+        [chatId]: [...newMessages, ...(messages[chatId] ?? [])],
+      }));
       isChatFetched.current[chatId] = true;
     } catch (error) {
       console.error("Error fetching messages:", error);

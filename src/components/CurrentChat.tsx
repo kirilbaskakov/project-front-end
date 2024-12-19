@@ -7,9 +7,10 @@ import { useSearchParams } from "react-router-dom";
 import useUser from "@/hooks/useUser";
 
 const CurrentChat = () => {
-  const { messages, fetchMessages, sendMessage } = useChat();
+  const { messages: allMessages, fetchMessages, sendMessage } = useChat();
   const { user } = useUser();
   const chatId = Number(useSearchParams("chat_id")[0].get("chat_id"));
+  const messages = allMessages[chatId] ?? [];
 
   useEffect(() => {
     fetchMessages(chatId);

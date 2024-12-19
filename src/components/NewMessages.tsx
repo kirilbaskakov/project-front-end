@@ -1,24 +1,19 @@
 import { useEffect, useState } from "react";
 import ChatCard from "./ChatCard";
 import ChatType from "@/types/ChatType";
-import logger from "@/utils/Logger";
+import getChats from "@/api/getChats";
+import useUser from "@/hooks/useUser";
 
 const NewMessages = () => {
+  const { user } = useUser();
   const [chats, setChats] = useState<ChatType[]>([]);
 
-  const fetchChats = async () => {
-    try {
-      const response = await fetch(import.meta.env + "/chats");
-      const chats = await response.json();
-      setChats(chats);
-    } catch {
-      logger.error("Error while fetching chats.");
-    }
-  };
-
   useEffect(() => {
-    fetchChats();
-  }, []);
+    if (!user) {
+      return;
+    }
+    getChats(user.id).then(setChats);
+  }, [user]);
 
   return (
     <div className="flex flex-col gap-6 mt-4">

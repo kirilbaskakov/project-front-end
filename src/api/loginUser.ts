@@ -5,19 +5,28 @@ const loginUser = async (
   email: string,
   password: string,
 ): Promise<{ user: UserType; token: string }> => {
-  const body = JSON.stringify({ email, password });
-  const response = await fetch(import.meta.env.VITE_API_URL + "/login", {
-    headers: {
-      "Content-Type": "application/json",
+  // const body = JSON.stringify({ email, password });
+  // const response = await fetch(import.meta.env.VITE_API_URL + "/login", {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   method: "POST",
+  //   body,
+  // });
+  // if (!response.ok) {
+  //   logger.error(`User with email=${email} error while log in`);
+  //   throw new Error("Login error");
+  // }
+  // const data = await response.json();
+  const data = {
+    user: {
+      id: 1,
+      email,
+      name: "name",
+      surname: "surname",
     },
-    method: "POST",
-    body,
-  });
-  if (!response.ok) {
-    logger.error(`User with email=${email} error while log in`);
-    throw new Error("Login error");
-  }
-  const data = await response.json();
+    token: "1234",
+  };
   logger.info(`User ${data.user.id} succesfully logged in`);
   return data;
 };

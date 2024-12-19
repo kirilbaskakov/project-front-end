@@ -26,7 +26,10 @@ export const UserProvider = ({
 }: {
   readonly children: ReactNode;
 }) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<UserType | null>(() => {
+    const str = localStorage.getItem("user");
+    return str ? JSON.parse(str) : null;
+  });
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const register = async (body: {
@@ -39,6 +42,7 @@ export const UserProvider = ({
     setToken(data.token);
     setUser(data.user);
     localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
   };
 
   const login = async (email: string, password: string) => {
@@ -46,7 +50,7 @@ export const UserProvider = ({
     setToken(data.token);
     setUser(data.user);
     localStorage.setItem("token", data.token);
-    console.log(data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
   };
 
   const logout = () => {

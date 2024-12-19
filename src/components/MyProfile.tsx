@@ -7,12 +7,12 @@ const MyProfile = () => {
       <img src={Woman} className="w-full rounded-lg" />
       <form className="flex flex-col gap-4 mt-4">
         <div className="flex justify-between items-center">
-          <input type="text" className="w-3/4" />
+          <input type="text" className="w-3/4" placeholder="Name" />
           <PiGenderFemale className="w-8 h-8" />
         </div>
-        <input type="text" className="w-3/4" />
-        <input type="text" className="w-3/4" />
-        <textarea className="mt-4" rows={3} />
+        <input type="text" className="w-3/4" placeholder="Surname" />
+        <input type="text" className="w-3/4" placeholder="Place" />
+        <textarea className="mt-4" rows={3} placeholder="Description" />
       </form>
     </div>
   );
