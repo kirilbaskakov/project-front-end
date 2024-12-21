@@ -6,7 +6,7 @@ const MyProfile = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-[40%] p-6">
+    <div className="w-full p-6 md:w-[40%]">
       <img src={Woman} className="w-full rounded-lg" />
       <form className="flex flex-col gap-4 mt-4">
         <div className="flex justify-between items-center">

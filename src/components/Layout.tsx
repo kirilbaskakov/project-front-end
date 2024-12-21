@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <Header />
       <main className="min-h-[80vh] px-4 pb-12">
-        <div className="flex gap-28 max-w-[1200px] mx-auto">
+        <div className="flex gap-28 max-w-[1200px] mx-auto flex-col md:flex-row">
           <Outlet />
         </div>
       </main>

@@ -8,7 +8,7 @@ const SearchProfile = ({ users }: { users: UserType[] }) => {
   const currentUser = users[index];
 
   return (
-    <div className="w-[40%] p-6">
+    <div className="w-[100%] p-6 md:w-[40%]">
       <img src={Woman} className="w-full rounded-lg" />
       <h3 className="relative ml-2 top-[-45px] text-white text-3xl">
         {currentUser?.name}, {currentUser?.age}
